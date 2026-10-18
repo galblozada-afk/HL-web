@@ -2132,3 +2132,30 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
 
   .phone-stage { width: min(100%, 340px); }
 }
+
+/* Mobile scroll correction: hide the compact bar completely while moving. */
+@media (max-width: 720px) {
+  .site-header:not(.is-scrolled).is-leaving-hero,
+  .site-header.is-scrolled:not(.is-paused) {
+    transform: translateY(-18px) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .site-header.is-scrolled.is-paused {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* Restore the opposing card/reel motion on mobile. */
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
+  .project-reel-top .project-reel-track {
+    animation: reel-top-loop 48s linear infinite running !important;
+  }
+
+  .project-reel-bottom .project-reel-track {
+    animation: reel-bottom-loop 54s linear infinite running !important;
+  }
+}
