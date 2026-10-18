@@ -2290,8 +2290,21 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   }
 
   .impact-highlight strong {
+    display: block;
+    justify-self: start;
     font-size: clamp(2.6rem, 12vw, 4rem);
     line-height: .82;
+  }
+
+  .impact-highlight .metric-counter {
+    display: inline-block;
+    min-width: 0;
+    white-space: nowrap;
+    font-family: "Montserrat", var(--display);
+    font-size: clamp(2.6rem, 12vw, 4rem) !important;
+    font-weight: 900;
+    line-height: .82 !important;
+    letter-spacing: -.08em;
   }
 
   .impact-highlight > span {
