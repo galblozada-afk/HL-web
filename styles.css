@@ -2130,7 +2130,8 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
     opacity: 1;
   }
 
-  .phone-stage { width: min(100%, 340px); }
+  /* Mobile only: keep the phone/video more compact without changing desktop. */
+  .phone-stage { width: min(100%, 280px); }
 }
 
 /* Mobile stack restoration: preserve the desktop overlap behavior in both scroll directions. */
