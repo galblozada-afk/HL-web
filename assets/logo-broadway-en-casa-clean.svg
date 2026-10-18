@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" role="img" aria-labelledby="title">
+  <title>Broadway en Casa</title>
+  <g fill="#fff" transform="translate(22 0)">
+    <path d="m70 126 11 33h35l-28 20 11 34-29-21-29 21 11-34-28-20h35z"/>
+    <text x="142" y="204" font-family="Arial Black, Arial, sans-serif" font-size="82" font-weight="900" letter-spacing="-4">BROADWAY</text>
+  </g>
+  <text x="300" y="260" fill="#f5aa24" font-family="cursive" font-size="58" font-style="italic">en Casa</text>
+</svg>
