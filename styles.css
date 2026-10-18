@@ -2295,8 +2295,8 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   }
 
   .hero-person {
-    width: 135vw;
-    right: -17.5%;
+    width: 170vw;
+    right: -35%;
     bottom: -2rem;
   }
 }
