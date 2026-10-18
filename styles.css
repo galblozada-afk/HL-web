@@ -312,8 +312,8 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   .hero-line + .hero-line { margin-left: 2rem; }
   .hero-lede { max-width: 310px; font-size: .86rem; }
   .hero-actions { flex-direction: row; align-items: center; gap: 1rem; }
-  .hero-stage { min-height: 300px; margin-top: .5rem; }
-  .hero-person { width: 94vw; right: -19%; bottom: -3.5rem; }
+  .hero-stage { min-height: 360px; margin-top: .75rem; }
+  .hero-person { width: 82vw; right: -7%; bottom: -1.5rem; }
   .hero .stage-label-top, .hero .stage-label-bottom { display: none; }
   .hero .stage-cross { left: auto; right: 6%; bottom: 23%; }
   .hero-spark { left: 7%; top: 5%; }
