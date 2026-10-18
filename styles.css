@@ -2169,6 +2169,17 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
     overflow-y: visible;
   }
 
+  .project-reel,
+  .project-reel-bottom,
+  .project-reels .project-card.reveal {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .project-reels .project-card.reveal {
+    transform: none;
+  }
+
   .project-reel-track {
     width: max-content;
     min-width: max-content;
