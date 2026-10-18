@@ -2133,6 +2133,16 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   .phone-stage { width: min(100%, 340px); }
 }
 
+/* Mobile card parallax: keep the scroll transform above the legacy image crop rule. */
+@media (max-width: 720px) and (prefers-reduced-motion: no-preference) {
+  .services-stack .stack-card .stack-media img,
+  .services-stack .stack-card .stack-media video,
+  .services-stack .stack-card.stack-card--blue .stack-media img[src*="service-any-scale-concert"] {
+    transform: scale(var(--stack-media-scale, 1.08)) translate3d(0, var(--stack-media-y, 0px), 0) !important;
+    transition: transform .16s linear;
+  }
+}
+
 /* Mobile scroll correction: hide the compact bar completely while moving. */
 @media (max-width: 720px) {
   .site-header:not(.is-scrolled).is-leaving-hero,
