@@ -198,7 +198,7 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   .stack-card h3 { font-size: clamp(2.3rem, 12vw, 4rem); }
   .stack-tags { margin: 1.35rem 0 1.5rem; }
   .stack-media { height: 64vw; min-height: 240px; border-radius: 15px; }
-  .stack-card--warm { overflow: hidden; }
+  .stack-card--warm { overflow: visible; }
   .stack-card--warm .stack-character { right: -1.5rem; bottom: -2.5rem; width: 145px; }
 }
 @media (prefers-reduced-motion: reduce) {
