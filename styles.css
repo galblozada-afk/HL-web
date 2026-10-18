@@ -2040,3 +2040,94 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
 }
 .site-header.is-scrolled .main-nav a:hover::after,
 .site-header.is-scrolled .main-nav a:focus-visible::after { transform: scaleX(1); }
+
+/* Mobile final pass: keep the header inside the viewport and avoid blank lazy media. */
+@media (max-width: 720px) {
+  html,
+  body { overflow-x: hidden; }
+
+  .site-header,
+  .site-header:not(.is-scrolled),
+  .site-header.is-scrolled {
+    position: fixed;
+    z-index: 30;
+    top: 10px;
+    left: 14px;
+    right: auto;
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+    height: 58px;
+    min-height: 58px;
+    margin: 0;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto;
+    border: 1px solid rgba(17, 17, 17, .08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .98);
+    color: var(--ink);
+    box-shadow: 0 12px 28px rgba(2, 13, 45, .16);
+    backdrop-filter: blur(14px);
+  }
+
+  .site-header .brand,
+  .site-header:not(.is-scrolled) .brand,
+  .site-header.is-scrolled .brand {
+    grid-column: 1;
+    justify-self: start;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .site-header .brand-logo,
+  .site-header:not(.is-scrolled) .brand-logo,
+  .site-header.is-scrolled .brand-logo {
+    display: block;
+    width: 76px;
+    max-width: 100%;
+    filter: brightness(0) !important;
+  }
+
+  .site-header .main-nav,
+  .site-header.is-scrolled .main-nav { display: none !important; }
+
+  .site-header .header-cta,
+  .site-header.is-scrolled .header-cta { display: none !important; }
+
+  .site-header .menu-toggle,
+  .site-header.is-scrolled .menu-toggle {
+    grid-column: 2;
+    display: inline-flex;
+    justify-self: end;
+    align-items: center;
+    gap: .5rem;
+    color: var(--ink) !important;
+  }
+
+  .site-header .menu-toggle b { border-color: currentColor; }
+
+  .project-reels {
+    width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .project-reels .project-media,
+  .project-reels .project-media video,
+  .project-reels .project-media img,
+  .stack-media img,
+  .phone-shell {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .phone-stage { width: min(100%, 340px); }
+}
