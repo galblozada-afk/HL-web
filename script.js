@@ -340,26 +340,13 @@ const updateStackCards = () => {
   stackCards.forEach((card, index) => {
     const nextCard = stackCards[index + 1];
     const nextTop = nextCard ? nextCard.getBoundingClientRect().top : Infinity;
-    const progress = reducedMotion || !nextCard ? 0 : Math.min(1, Math.max(0, (takeoverLine - nextTop) / (window.innerHeight * .34)));
-    card.style.setProperty('--stack-scale', (1 - progress * .055).toFixed(3));
-    card.style.setProperty('--stack-lift', `${(-progress * 10).toFixed(1)}px`);
-
-    const media = card.querySelector('.stack-media img, .stack-media video');
-    if (!media) return;
-    if (reducedMotion || !mobileStack) {
-      media.style.removeProperty('--stack-media-y');
-      media.style.removeProperty('--stack-media-scale');
-      return;
-    }
-
-    // Keep the image moving gently against the card while it passes through
-    // the viewport. The transform stays GPU-friendly and never changes layout.
-    const bounds = card.getBoundingClientRect();
-    const cardCenter = bounds.top + bounds.height * .5;
-    const viewportCenter = window.innerHeight * .52;
-    const offset = Math.max(-1, Math.min(1, (viewportCenter - cardCenter) / window.innerHeight));
-    media.style.setProperty('--stack-media-y', `${(offset * 26).toFixed(1)}px`);
-    media.style.setProperty('--stack-media-scale', (1.08 + Math.abs(offset) * .025).toFixed(3));
+    const desktopProgress = nextCard ? Math.min(1, Math.max(0, (takeoverLine - nextTop) / (window.innerHeight * .34))) : 0;
+    const mobileProgress = nextCard ? Math.min(1, Math.max(0, (window.innerHeight * .68 - nextTop) / (window.innerHeight * .42))) : 0;
+    const progress = reducedMotion ? 0 : (mobileStack ? mobileProgress : desktopProgress);
+    const scaleAmount = mobileStack ? .085 : .055;
+    const liftAmount = mobileStack ? 18 : 10;
+    card.style.setProperty('--stack-scale', (1 - progress * scaleAmount).toFixed(3));
+    card.style.setProperty('--stack-lift', `${(-progress * liftAmount).toFixed(1)}px`);
   });
 };
 const requestStackCards = () => { if (stackFrame === null) stackFrame = window.requestAnimationFrame(updateStackCards); };
