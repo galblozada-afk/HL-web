@@ -399,7 +399,7 @@ if (portraitMarquee && portraitPath && portraitItems.length) {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (portraitStart === null) portraitStart = timestamp;
     const progress = reducedMotion ? 0 : ((timestamp - portraitStart) % portraitDuration) / portraitDuration;
-    const mobilePortraitSpread = window.matchMedia('(max-width: 720px)').matches ? 1.65 : 1;
+    const mobilePortraitSpread = window.matchMedia('(max-width: 720px)').matches ? 2.35 : 1;
     const scaleX = (portraitMarquee.clientWidth / 996) * mobilePortraitSpread;
     const scaleY = portraitMarquee.clientHeight / 330;
 
