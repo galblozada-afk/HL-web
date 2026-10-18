@@ -74,7 +74,28 @@ window.addEventListener('scroll', () => {
 // The hero title lines drift in opposite directions as the page scrolls.
 const heroTitle = document.querySelector('.hero h1');
 const heroPerson = document.querySelector('.hero-person');
+const heroVideo = document.querySelector('.hero-video');
 const reduceHeroMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (heroVideo) {
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.loop = true;
+  heroVideo.playsInline = true;
+  heroVideo.preload = 'auto';
+  heroVideo.setAttribute('muted', '');
+  heroVideo.setAttribute('playsinline', '');
+  heroVideo.setAttribute('autoplay', '');
+  const startHeroVideo = () => {
+    const playAttempt = heroVideo.play();
+    if (playAttempt?.catch) playAttempt.catch(() => {});
+  };
+  heroVideo.addEventListener('loadedmetadata', startHeroVideo, { once: true });
+  heroVideo.addEventListener('canplay', startHeroVideo, { once: true });
+  heroVideo.addEventListener('timeupdate', () => {
+    if (heroVideo.duration && heroVideo.duration - heroVideo.currentTime < .08) heroVideo.currentTime = 0;
+  });
+  startHeroVideo();
+}
 let heroTitleFrame = null;
 const updateHeroTitleMotion = () => {
   heroTitleFrame = null;
