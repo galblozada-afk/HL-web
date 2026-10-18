@@ -95,6 +95,37 @@ document.querySelectorAll('.project-reel-track').forEach((track) => {
   [...track.children].forEach((card) => track.appendChild(card.cloneNode(true)));
 });
 
+// Mobile Safari does not always honor autoplay from markup alone. Keep the
+// reels silent and explicitly start each video when its card enters the
+// viewport, then pause it off-screen to avoid blank cards and wasted bandwidth.
+const reelVideos = [...document.querySelectorAll('.project-reels video')];
+const startReelVideo = (video) => {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.preload = 'auto';
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+  video.setAttribute('autoplay', '');
+  const playAttempt = video.play();
+  if (playAttempt?.catch) playAttempt.catch(() => {});
+};
+
+if (reelVideos.length) {
+  const reelVideoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) startReelVideo(entry.target);
+      else entry.target.pause();
+    });
+  }, { threshold: 0.05 });
+
+  reelVideos.forEach((video) => {
+    video.addEventListener('loadedmetadata', () => startReelVideo(video), { once: true });
+    video.addEventListener('canplay', () => startReelVideo(video), { once: true });
+    reelVideoObserver.observe(video);
+  });
+}
+
 // A pixel-based loop lets each reel reverse from its current frame instead of
 // restarting a CSS keyframe cycle. Each track contains two identical sequences.
 let reelScrollDirection = 'down';
