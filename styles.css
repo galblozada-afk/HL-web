@@ -2099,6 +2099,7 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   .site-header.is-scrolled .main-nav { display: none !important; }
 
   .site-header .header-cta,
+  .site-header:not(.is-scrolled) .header-cta,
   .site-header.is-scrolled .header-cta { display: none !important; }
 
   .site-header .menu-toggle,
