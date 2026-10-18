@@ -2143,6 +2143,23 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   }
 }
 
+/* Mobile stack restoration: preserve the desktop overlap behavior in both scroll directions. */
+@media (max-width: 720px) {
+  .services-stack .stack-cards {
+    position: relative;
+    overflow: visible;
+  }
+
+  .services-stack .stack-card {
+    position: sticky !important;
+    z-index: 1;
+  }
+
+  .services-stack .stack-card:nth-child(2) { z-index: 2; }
+  .services-stack .stack-card:nth-child(3) { z-index: 3; }
+  .services-stack .stack-card:nth-child(4) { z-index: 4; }
+}
+
 /* Mobile scroll correction: hide the compact bar completely while moving. */
 @media (max-width: 720px) {
   .site-header:not(.is-scrolled).is-leaving-hero,
