@@ -2288,16 +2288,16 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
     z-index: 2;
     inset: auto 0 0;
     width: 100%;
-    height: 410px;
+    height: 450px;
     min-height: 0;
     margin: 0;
     pointer-events: none;
   }
 
   .hero-person {
-    width: 94vw;
-    right: -18%;
-    bottom: -2.25rem;
+    width: 110vw;
+    right: -5%;
+    bottom: -2rem;
   }
 }
 
