@@ -120,6 +120,11 @@ document.querySelectorAll('.project-reel-track').forEach((track) => {
 // reels silent and explicitly start each video when its card enters the
 // viewport, then pause it off-screen to avoid blank cards and wasted bandwidth.
 const reelVideos = [...document.querySelectorAll('.project-reels video')];
+const reelPosterFor = (video) => {
+  const source = video.getAttribute('src') || '';
+  const filename = source.split('/').pop()?.split('?')[0] || '';
+  return filename.endsWith('.mp4') ? `assets/poster-${filename.replace(/\.mp4$/i, '.jpg')}` : '';
+};
 const startReelVideo = (video) => {
   video.muted = true;
   video.defaultMuted = true;
@@ -138,11 +143,12 @@ if (reelVideos.length) {
       if (entry.isIntersecting) startReelVideo(entry.target);
       else entry.target.pause();
     });
-  }, { threshold: 0.05 });
+  }, { rootMargin: '0px 420px 0px 420px', threshold: 0.01 });
 
   reelVideos.forEach((video) => {
-    video.addEventListener('loadedmetadata', () => startReelVideo(video), { once: true });
-    video.addEventListener('canplay', () => startReelVideo(video), { once: true });
+    const poster = reelPosterFor(video);
+    if (poster) video.setAttribute('poster', poster);
+    video.preload = 'none';
     reelVideoObserver.observe(video);
   });
 }
