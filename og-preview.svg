@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2d6bff"/>
+      <stop offset="1" stop-color="#1041c7"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#fff" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#101010"/>
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="url(#blue)"/>
+  <rect x="24" y="24" width="1152" height="582" rx="28" fill="url(#grid)"/>
+  <circle cx="1030" cy="110" r="210" fill="#fff" fill-opacity=".08"/>
+  <circle cx="1090" cy="520" r="270" fill="#0a2b9c" fill-opacity=".35"/>
+  <g transform="translate(76 76)">
+    <path d="M0 98 61 8h42L47 76h57L70 110H0l29-40H9L0 98Z" fill="#fff"/>
+    <path d="m49 47 20-29h21L69 47H49Z" fill="#d9ff48"/>
+    <text x="0" y="145" fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="2">PRODUCCIONES</text>
+  </g>
+  <text x="76" y="330" fill="#fff" font-family="Arial,sans-serif" font-size="82" font-weight="900" letter-spacing="-3">HL PRODUCCIONES</text>
+  <text x="80" y="400" fill="#d9ff48" font-family="Arial,sans-serif" font-size="38" font-weight="700">Ideas que se ven. Historias que se quedan.</text>
+  <text x="80" y="480" fill="#fff" fill-opacity=".86" font-family="Arial,sans-serif" font-size="24">Experiencias en vivo, producciones y contenido que conectan.</text>
+  <text x="80" y="550" fill="#fff" fill-opacity=".6" font-family="Arial,sans-serif" font-size="18" letter-spacing="3">HL-WEB-T8UK.ONRENDER.COM</text>
+</svg>
