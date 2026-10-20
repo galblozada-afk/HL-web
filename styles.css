@@ -2382,3 +2382,105 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   .impact-experience b { font-size: 1.05rem; }
   .impact-experience div span { font-size: .8rem; }
 }
+
+/* Branded first paint: the loader covers only the hero handoff, then opens
+   like a theatre curtain once the first usable video frame is ready. */
+.site-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--blue);
+  color: var(--paper);
+  pointer-events: auto;
+}
+
+.site-intro-content {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  justify-items: center;
+  gap: .9rem;
+  text-align: center;
+  transition: opacity .18s ease-out, transform .18s ease-out;
+}
+
+.site-intro-mark {
+  display: grid;
+  place-items: center;
+  width: 4.6rem;
+  height: 4.6rem;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  font: 900 1.3rem/1 var(--display);
+  letter-spacing: -.08em;
+}
+
+.site-intro-label {
+  margin: 0;
+  font: 600 .78rem/1.2 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.site-intro-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid rgba(255,255,255,.3);
+  border-top-color: var(--paper);
+  border-radius: 50%;
+  animation: site-intro-spin .8s linear infinite;
+}
+
+.site-intro-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 50.5%;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.06), transparent 18%, transparent 82%, rgba(0,0,0,.12)),
+    repeating-linear-gradient(90deg, #101010 0 9%, #171717 9.5% 18%, #0d0d0d 18.5% 27%);
+  box-shadow: inset 0 0 5rem rgba(0,0,0,.22);
+  will-change: transform;
+}
+
+.site-intro-curtain-left { left: 0; transform-origin: left center; }
+.site-intro-curtain-right { right: 0; transform-origin: right center; }
+
+.site-intro.is-opening .site-intro-content {
+  opacity: 0;
+  transform: translateY(-.5rem);
+}
+
+.site-intro.is-opening .site-intro-curtain-left {
+  animation: site-curtain-left .68s cubic-bezier(.76,0,.24,1) forwards;
+}
+
+.site-intro.is-opening .site-intro-curtain-right {
+  animation: site-curtain-right .68s cubic-bezier(.76,0,.24,1) forwards;
+}
+
+.site-intro.is-open {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes site-intro-spin { to { transform: rotate(360deg); } }
+@keyframes site-curtain-left { to { transform: translateX(-101%); } }
+@keyframes site-curtain-right { to { transform: translateX(101%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .site-intro-spinner { animation: none; }
+  .site-intro.is-opening .site-intro-curtain-left,
+  .site-intro.is-opening .site-intro-curtain-right {
+    animation: none;
+  }
+  .site-intro.is-opening {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .18s ease-out, visibility 0s linear .18s;
+  }
+}

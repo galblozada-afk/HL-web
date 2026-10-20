@@ -96,6 +96,38 @@ if (heroVideo) {
   });
   startHeroVideo();
 }
+
+// Keep the first impression intentional without blocking the page on every
+// asset. The intro waits for the hero's first usable frame, then releases on
+// a short timeout so a slow connection never traps the visitor behind it.
+const siteIntro = document.querySelector('[data-site-intro]');
+if (siteIntro) {
+  let introReleased = false;
+  const releaseIntro = () => {
+    if (introReleased) return;
+    introReleased = true;
+    siteIntro.classList.add('is-opening');
+    window.setTimeout(() => {
+      siteIntro.classList.add('is-open');
+      siteIntro.setAttribute('aria-hidden', 'true');
+    }, 760);
+  };
+
+  const introTimeout = window.setTimeout(releaseIntro, 1800);
+  const releaseWhenHeroReady = () => {
+    window.clearTimeout(introTimeout);
+    window.setTimeout(releaseIntro, reduceHeroMotion.matches ? 0 : 120);
+  };
+
+  if (reduceHeroMotion.matches || !heroVideo) {
+    releaseWhenHeroReady();
+  } else if (heroVideo.readyState >= 3) {
+    releaseWhenHeroReady();
+  } else {
+    heroVideo.addEventListener('loadeddata', releaseWhenHeroReady, { once: true });
+    heroVideo.addEventListener('canplay', releaseWhenHeroReady, { once: true });
+  }
+}
 let heroTitleFrame = null;
 const updateHeroTitleMotion = () => {
   heroTitleFrame = null;
