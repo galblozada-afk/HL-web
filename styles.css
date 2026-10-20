@@ -1341,7 +1341,7 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   min-height: min(52vw, 620px);
   overflow: hidden;
   border-radius: 28px;
-  background: var(--blue);
+  background: transparent;
 }
 .impact-hero::after {
   content: "";
