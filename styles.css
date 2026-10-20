@@ -1359,7 +1359,7 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
 .impact-lede strong { font-weight: 800; }
 .impact-highlight { display: grid; grid-template-columns: minmax(150px, .85fr) minmax(0, 1.4fr); align-items: center; gap: clamp(1rem, 3vw, 2.5rem); padding: 1.3rem 1.5rem 1.5rem; border-radius: 20px; background: var(--blue); color: #fff; }
 .impact-highlight strong { font-family: "Montserrat", var(--display); font-size: clamp(3rem, 5.3vw, 5rem); line-height: .75; letter-spacing: -.08em; }
-.metric-counter { display: inline-block; min-width: 1.1ch; }
+.metric-counter, .impact-highlight .metric-counter { display: inline-block; min-width: 1.1ch; font: inherit; }
 .impact-highlight > span { max-width: none; font-family: "Montserrat", var(--display); font-size: clamp(.9rem, 1.35vw, 1.2rem); font-weight: 700; line-height: 1.08; letter-spacing: -.04em; text-transform: none; }
 .impact-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; margin-top: .7rem; }
 .impact-stats div { display: grid; place-items: center; gap: .55rem; min-height: 190px; padding: 1.2rem; border: 1px solid rgba(17,17,17,.12); border-radius: 16px; background: #f7f7f5; text-align: center; }
