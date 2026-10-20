@@ -2392,7 +2392,7 @@ h1 span, h2 em { color: var(--orange); font-style: normal; }
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--blue);
+  background: transparent;
   color: var(--paper);
   pointer-events: auto;
 }
