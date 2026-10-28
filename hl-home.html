@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="HL Producciones convierte lo que sucede en vivo en historias que permanecen." />
+    <title>HL Producciones — En vivo se queda</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=League+Spartan:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="hl-home.css?v=20261027-23" />
+  </head>
+  <body>
+    <main class="hl-home" id="inicio">
+      <div class="hl-home-reel" aria-live="polite">
+        <article class="hl-home-slide is-active" data-slide data-title="Urinetown / CDMX">
+          <video autoplay muted loop playsinline preload="auto" poster="assets/poster-urinetownmx_hl_video.jpg" aria-label="Trailer de Urinetown"><source src="assets/urinetown-trailer.mp4" type="video/mp4" /></video>
+        </article>
+        <article class="hl-home-slide" data-slide data-title="Luciérnagas / CDMX">
+          <video muted loop playsinline preload="metadata" poster="assets/poster-ig_luciernagas_desaparicion_hl_video.jpg" aria-label="Trailer de La extraña desaparición de las luciérnagas"><source src="assets/luciernagas-demo.mp4" type="video/mp4" /></video>
+        </article>
+        <article class="hl-home-slide" data-slide data-title="Premios ACPT / 2026">
+          <video muted loop playsinline preload="metadata" aria-label="Premios ACPT 2026"><source src="assets/acpt-hero.mp4" type="video/mp4" /></video>
+        </article>
+        <article class="hl-home-slide" data-slide data-title="Big Band Blue Catz / Live">
+          <video muted loop playsinline preload="metadata" poster="assets/poster-ig_hl_producciones_bigband_hl_001_video.jpg" aria-label="Big Band Blue Catz en vivo"><source src="assets/bluecatz-bigband.mp4" type="video/mp4" /></video>
+        </article>
+        <article class="hl-home-slide" data-slide data-title="LoveSICK / CDMX">
+          <video muted loop playsinline preload="metadata" poster="assets/poster-ig_lovesick_cdmx_hl_001_video.jpg" aria-label="LoveSICK en Ciudad de México"><source src="assets/ig_lovesick_cdmx_hl_001_video.mp4" type="video/mp4" /></video>
+        </article>
+      </div>
+      <div class="hl-home-wash" aria-hidden="true"></div>
+
+      <header class="hl-home-header">
+        <a class="hl-home-brand" href="index.html" aria-label="Volver a la página actual de HL Producciones"><img src="assets/hl-producciones-logo.png" alt="HL Producciones" /></a>
+        <nav aria-label="Navegación de HL Producciones">
+          <a href="index.html#inicio">Inicio</a>
+          <a href="index.html?nav=20261027#inicio">Servicios</a>
+          <a href="index.html#trabajo">Noticias</a>
+          <a href="index.html#manifiesto">Blog</a>
+        </nav>
+      </header>
+
+      <section class="hl-home-copy" aria-labelledby="hl-home-title">
+        <h1 id="hl-home-title">Creamos<br /><em>experiencias</em><br />que se quedan</h1>
+      </section>
+
+      <div class="hl-home-controls" aria-label="Control del reel">
+        <button type="button" data-prev aria-label="Video anterior">←</button>
+        <div><strong data-current-title><img class="hl-home-current-logo" src="assets/urinetown-logo-generated.png" alt="Urinetown, el musical" /></strong></div>
+        <button type="button" data-next aria-label="Siguiente video">→</button>
+      </div>
+
+    </main>
+    <section class="hl-home-follow" aria-labelledby="hl-home-follow-title">
+      <p class="hl-home-follow-kicker">Del escenario a tu pantalla</p>
+      <h2 id="hl-home-follow-title">Hacemos que cada momento encuentre a su público</h2>
+      <p class="hl-home-follow-body">Diseñamos producciones que se sienten en vivo y siguen creciendo después: en la conversación, en la memoria y en cada pantalla.</p>
+    </section>
+    <script src="hl-home.js?v=20261027-17"></script>
+    <script src="page-transition.js?v=20261027-2"></script>
+  </body>
+</html>
