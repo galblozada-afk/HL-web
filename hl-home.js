@@ -43,6 +43,7 @@ function initNativeScrollScene() {
   const copy = hero?.querySelector('.hl-home-copy');
   const controls = hero?.querySelector('.hl-home-controls');
   const header = hero?.querySelector('.hl-home-header');
+  const follow = document.querySelector('.hl-home-follow');
   if (!hero || !stage || !reel || !copy || reduceMotion.matches || hero.dataset.scrollSceneInitialized) return;
 
   hero.dataset.scrollSceneInitialized = 'true';
@@ -50,11 +51,17 @@ function initNativeScrollScene() {
   let frame = 0;
   const update = () => {
     frame = 0;
-    const progress = Math.max(0, Math.min(1, (window.scrollY - startOffset) / Math.max(window.innerHeight, 1)));
+    // The scene uses the actual distance occupied by the sticky hero. This
+    // keeps the animation consistent on short laptops and mobile browsers
+    // where the viewport height changes while the browser chrome appears.
+    const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
+    const progress = Math.max(0, Math.min(1, (window.scrollY - startOffset) / travel));
+    const mediaScale = 1 + progress * .15;
+    const copyScale = 1 + progress * .24;
     reel.style.setProperty('--reveal-progress', progress.toFixed(4));
-    reel.style.transform = `scale(${1 + progress * .15})`;
-    reel.style.opacity = String(1 - progress * .18);
-    copy.style.transform = `translateY(${-progress * 40}px) scale(${1 + progress * .24})`;
+    reel.style.transform = `scale(${mediaScale})`;
+    reel.style.opacity = String(1 - progress);
+    copy.style.transform = `translateY(${-progress * 40}px) scale(${copyScale})`;
     copy.style.opacity = String(1 - progress);
     if (controls) {
       controls.style.transform = `translateX(-50%) translateY(${progress * 28}px)`;
@@ -63,6 +70,9 @@ function initNativeScrollScene() {
     if (header) {
       header.style.transform = `translateY(${-progress * 20}px)`;
       header.style.opacity = String(1 - progress * .85);
+    }
+    if (follow) {
+      follow.style.setProperty('--follow-enter', String(progress));
     }
   };
   const scheduleUpdate = () => {
@@ -79,3 +89,17 @@ function initScrollScene() {
 
 initScrollScene();
 window.addEventListener('load', initScrollScene, { once: true });
+
+const homeRevealItems = document.querySelectorAll('.hl-home-reveal');
+if ('IntersectionObserver' in window && homeRevealItems.length) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+  homeRevealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  homeRevealItems.forEach((item) => item.classList.add('is-visible'));
+}
