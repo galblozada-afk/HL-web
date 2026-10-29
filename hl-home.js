@@ -38,18 +38,22 @@ showSlide(0);
 
 function initNativeScrollScene() {
   const hero = document.querySelector('.hl-home');
+  const stage = hero?.querySelector('.hl-home-stage');
   const reel = hero?.querySelector('.hl-home-reel');
   const copy = hero?.querySelector('.hl-home-copy');
   const controls = hero?.querySelector('.hl-home-controls');
   const header = hero?.querySelector('.hl-home-header');
-  if (!hero || !reel || !copy || reduceMotion.matches) return;
+  if (!hero || !stage || !reel || !copy || reduceMotion.matches || hero.dataset.scrollSceneInitialized) return;
 
+  hero.dataset.scrollSceneInitialized = 'true';
   const startOffset = hero.offsetTop;
-  hero.classList.add('hl-native-pin');
+  let frame = 0;
   const update = () => {
+    frame = 0;
     const progress = Math.max(0, Math.min(1, (window.scrollY - startOffset) / Math.max(window.innerHeight, 1)));
+    reel.style.setProperty('--reveal-progress', progress.toFixed(4));
     reel.style.transform = `scale(${1 + progress * .15})`;
-    reel.style.opacity = String(1 - progress);
+    reel.style.opacity = String(1 - progress * .18);
     copy.style.transform = `translateY(${-progress * 40}px) scale(${1 + progress * .24})`;
     copy.style.opacity = String(1 - progress);
     if (controls) {
@@ -61,40 +65,16 @@ function initNativeScrollScene() {
       header.style.opacity = String(1 - progress * .85);
     }
   };
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
+  const scheduleUpdate = () => {
+    if (!frame) frame = window.requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate, { passive: true });
   update();
 }
 
 function initScrollScene() {
-  const hero = document.querySelector('.hl-home');
-  const reel = hero?.querySelector('.hl-home-reel');
-  const copy = hero?.querySelector('.hl-home-copy');
-  const controls = hero?.querySelector('.hl-home-controls');
-  const header = hero?.querySelector('.hl-home-header');
-  if (!hero || !reel || !copy || reduceMotion.matches) return;
-  if (!window.gsap || !window.ScrollTrigger) {
-    initNativeScrollScene();
-    return;
-  }
-
-  window.gsap.registerPlugin(window.ScrollTrigger);
-  window.gsap.set([reel, copy], { willChange: 'transform, opacity' });
-  window.gsap.timeline({
-    scrollTrigger: {
-      trigger: hero,
-      start: 'top top',
-      end: '+=100%',
-      pin: true,
-      scrub: 0.8,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
-    }
-  })
-    .fromTo(reel, { scale: 1, opacity: 1 }, { scale: 1.15, opacity: 0, ease: 'none' }, 0)
-    .fromTo(copy, { scale: 1, opacity: 1, y: 0 }, { scale: 1.24, opacity: 0, y: -40, ease: 'none' }, 0)
-    .to(controls, { opacity: 0, y: 28, ease: 'none' }, 0.08)
-    .to(header, { opacity: 0.15, y: -20, ease: 'none' }, 0);
+  initNativeScrollScene();
 }
 
 initScrollScene();
