@@ -71,7 +71,7 @@ function initNativeScrollScene() {
     const mediaScale = 1 + progress * .04;
     // Let the card settle slightly lower before the first section begins.
     const cardProgress = Math.min(progress / .92, 1);
-    const cardDrop = cardProgress * Math.min(window.innerHeight * .22, 220);
+    const cardDrop = cardProgress * Math.min(window.innerHeight * .30, 280);
     const copyScale = 1 + progress * .08;
     reel.style.setProperty('--reveal-progress', progress.toFixed(4));
     reel.style.transform = `translate3d(0, ${cardDrop.toFixed(2)}px, 0) scale(${mediaScale})`;
@@ -98,7 +98,7 @@ function initNativeScrollScene() {
 }
 
 function initScrollScene() {
-  initNativeScrollScene();   
+  initNativeScrollScene();    
 }
 
 initScrollScene();
