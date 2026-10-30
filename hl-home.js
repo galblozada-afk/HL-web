@@ -57,9 +57,12 @@ function initNativeScrollScene() {
     const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
     const progress = Math.max(0, Math.min(1, (window.scrollY - startOffset) / travel));
     const mediaScale = 1 + progress * .04;
+    // Let the card settle slightly lower before the first section begins.
+    const cardProgress = Math.min(progress / .92, 1);
+    const cardDrop = cardProgress * Math.min(window.innerHeight * .035, 34);
     const copyScale = 1 + progress * .08;
     reel.style.setProperty('--reveal-progress', progress.toFixed(4));
-    reel.style.transform = `scale(${mediaScale})`;
+    reel.style.transform = `translate3d(0, ${cardDrop.toFixed(2)}px, 0) scale(${mediaScale})`;
     copy.style.transform = `translateY(${-progress * 24}px) scale(${copyScale})`;
     copy.style.opacity = String(1 - progress * .72);
     if (controls) {
