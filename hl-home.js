@@ -1,5 +1,6 @@
 const slides = [...document.querySelectorAll('[data-slide]')];
 const title = document.querySelector('[data-current-title]');
+const introMedia = document.querySelector('.hl-home-intro-media');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let index = 0;
 let timer;
@@ -27,6 +28,17 @@ function showSlide(next) {
         title.innerHTML = '<img class="hl-home-current-logo" src="assets/lovesick-logo-generated.png" alt="LoveSick / CDMX" />';
   } else {
     title.textContent = slides[index].dataset.title || '';
+  }
+  if (introMedia) {
+    const introSlide = slides[index].cloneNode(true);
+    introSlide.removeAttribute('data-slide');
+    introSlide.classList.add('is-active');
+    const introVideo = introSlide.querySelector('video');
+    if (introVideo) {
+      introVideo.muted = true;
+      introVideo.play().catch(() => {});
+    }
+    introMedia.replaceChildren(introSlide);
   }
   window.clearTimeout(timer);
     if (!reduceMotion.matches) timer = window.setTimeout(() => showSlide(index + 1), 10000);
@@ -86,7 +98,7 @@ function initNativeScrollScene() {
 }
 
 function initScrollScene() {
-  initNativeScrollScene();
+  initNativeScrollScene(); 
 }
 
 initScrollScene();
