@@ -79,7 +79,7 @@ function initNativeScrollScene() {
     copy.style.opacity = String(1 - progress);
     if (controls) {
       controls.style.transform = `translateX(-50%) translateY(${progress * 8}px)`;
-      controls.style.opacity = '1';
+      controls.style.opacity = String(Math.max(0, 1 - progress * 1.2));
     }
     if (header) {
       header.style.transform = `translateY(${-progress * 12}px)`;
@@ -98,7 +98,7 @@ function initNativeScrollScene() {
 }
 
 function initScrollScene() {
-  initNativeScrollScene();    
+  initNativeScrollScene();     
 }
 
 initScrollScene();
