@@ -1,6 +1,5 @@
 const slides = [...document.querySelectorAll('[data-slide]')];
 const title = document.querySelector('[data-current-title]');
-const introMedia = document.querySelector('.hl-home-intro-media');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let index = 0;
 let timer;
@@ -28,17 +27,6 @@ function showSlide(next) {
         title.innerHTML = '<img class="hl-home-current-logo" src="assets/lovesick-logo-generated.png" alt="LoveSick / CDMX" />';
   } else {
     title.textContent = slides[index].dataset.title || '';
-  }
-  if (introMedia) {
-    const introSlide = slides[index].cloneNode(true);
-    introSlide.removeAttribute('data-slide');
-    introSlide.classList.add('is-active');
-    const introVideo = introSlide.querySelector('video');
-    if (introVideo) {
-      introVideo.muted = true;
-      introVideo.play().catch(() => {});
-    }
-    introMedia.replaceChildren(introSlide);
   }
   window.clearTimeout(timer);
     if (!reduceMotion.matches) timer = window.setTimeout(() => showSlide(index + 1), 10000);
@@ -71,7 +59,7 @@ function initNativeScrollScene() {
     const mediaScale = 1 + progress * .04;
     // Let the card settle slightly lower before the first section begins.
     const cardProgress = Math.min(progress / .92, 1);
-    const cardDrop = cardProgress * Math.min(window.innerHeight * .035, 34);
+    const cardDrop = cardProgress * Math.min(window.innerHeight * .22, 220);
     const copyScale = 1 + progress * .08;
     reel.style.setProperty('--reveal-progress', progress.toFixed(4));
     reel.style.transform = `translate3d(0, ${cardDrop.toFixed(2)}px, 0) scale(${mediaScale})`;
@@ -98,7 +86,7 @@ function initNativeScrollScene() {
 }
 
 function initScrollScene() {
-  initNativeScrollScene(); 
+  initNativeScrollScene();  
 }
 
 initScrollScene();
