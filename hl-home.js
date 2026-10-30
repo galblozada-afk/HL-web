@@ -18,7 +18,7 @@ function showSlide(next) {
   if (index === 0) {
     title.innerHTML = '<img class="hl-home-current-logo" src="assets/urinetown-logo-generated.png" alt="Urinetown, el musical" />';
   } else if (index === 1) {
-    title.innerHTML = '<img class="hl-home-current-logo" src="assets/luciernagas-logo-generated.png" alt="La extraña desaparición de las luciérnagas" />';
+    title.innerHTML = '<img class="hl-home-current-logo" src="assets/luciernagas-logo-generated.png" alt="La extraÃ±a desapariciÃ³n de las luciÃ©rnagas" />';
       } else if (index === 2) {
         title.innerHTML = '<img class="hl-home-current-logo" src="assets/acpt-logo-generated.png" alt="Premios ACPT 2026" />';
       } else if (index === 3) {
@@ -56,20 +56,19 @@ function initNativeScrollScene() {
     // where the viewport height changes while the browser chrome appears.
     const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
     const progress = Math.max(0, Math.min(1, (window.scrollY - startOffset) / travel));
-    const mediaScale = 1 + progress * .15;
-    const copyScale = 1 + progress * .24;
+    const mediaScale = 1 + progress * .04;
+    const copyScale = 1 + progress * .08;
     reel.style.setProperty('--reveal-progress', progress.toFixed(4));
     reel.style.transform = `scale(${mediaScale})`;
-    reel.style.opacity = String(1 - progress);
-    copy.style.transform = `translateY(${-progress * 40}px) scale(${copyScale})`;
-    copy.style.opacity = String(1 - progress);
+    copy.style.transform = `translateY(${-progress * 24}px) scale(${copyScale})`;
+    copy.style.opacity = String(1 - progress * .72);
     if (controls) {
-      controls.style.transform = `translateX(-50%) translateY(${progress * 28}px)`;
-      controls.style.opacity = String(1 - progress);
+      controls.style.transform = `translateX(-50%) translateY(${progress * 8}px)`;
+      controls.style.opacity = '1';
     }
     if (header) {
-      header.style.transform = `translateY(${-progress * 20}px)`;
-      header.style.opacity = String(1 - progress * .85);
+      header.style.transform = `translateY(${-progress * 12}px)`;
+      header.style.opacity = String(1 - progress * .5);
     }
     if (follow) {
       follow.style.setProperty('--follow-enter', String(progress));
