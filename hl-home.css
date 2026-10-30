@@ -77,7 +77,7 @@ button { font:inherit; cursor:pointer; }
 /* Home narrative sections: the same editorial rhythm as the hero, adapted to HL. */
 .hl-home-section { position:relative; padding:clamp(5rem,10vw,10rem) clamp(1.25rem,7vw,7rem); }
 .hl-home-section-kicker { color:rgba(255,255,255,.56); font:500 .68rem var(--mono); letter-spacing:.1em; text-transform:uppercase; }
-.hl-home-intro { --hero-overlap:clamp(2rem,8svh,6rem); position:relative; z-index:1; margin-top:calc(var(--hero-overlap) * -1); padding-top:calc(clamp(5rem,10vw,10rem) + var(--hero-overlap)); background:#090a0d; }
+.hl-home-intro { --hero-overlap:0px; position:relative; z-index:1; margin-top:0; padding-top:clamp(5rem,10vw,10rem); background:#090a0d; }
 .hl-home-intro-grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(260px,.55fr); gap:clamp(2rem,8vw,8rem); align-items:end; margin-top:2rem; }
 .hl-home-intro h2, .hl-home-work h2, .hl-home-services h2, .hl-home-process h2 { margin:0; color:#fff; font:500 clamp(3rem,7vw,7.4rem)/.86 var(--display); letter-spacing:-.055em; }
 .hl-home-intro h2 em, .hl-home-work h2 em, .hl-home-services h2 em, .hl-home-process h2 em { color:#2f5bea; font-style:normal; }
@@ -153,7 +153,7 @@ button { font:inherit; cursor:pointer; }
   .hl-home-service { grid-template-columns:2.2rem 3rem minmax(0,1fr) auto; gap:.75rem; }
   .hl-home-service img { width:2.5rem; height:2.5rem; }
   .hl-home-service p { font-size:.76rem; }
-  .hl-home-process-list { grid-template-columns:1fr; gap:2rem; } 
+  .hl-home-process-list { grid-template-columns:1fr; gap:2rem; }  
   .hl-home-process-list h3 { margin-top:1.25rem; }
   .hl-home-contact-art { min-height:260px; }
   .hl-home-footer-new { grid-template-columns:1fr; gap:1.4rem; }
