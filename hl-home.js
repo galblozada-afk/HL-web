@@ -57,7 +57,7 @@ function initNativeScrollScene() {
   const header = hero?.querySelector('.hl-home-header');
   const follow = document.querySelector('.hl-home-follow');
   if (!hero || !stage || !reel || !copy || reduceMotion.matches || hero.dataset.scrollSceneInitialized) return;
-
+ 
   hero.dataset.scrollSceneInitialized = 'true';
   const startOffset = hero.offsetTop;
   let frame = 0;
@@ -104,7 +104,7 @@ function initScrollScene() {
 initScrollScene();
 window.addEventListener('load', initScrollScene, { once: true });
 
-const homeRevealItems = document.querySelectorAll('.hl-home-reveal');
+const homeRevealItems = document.querySelectorAll('.hl-home-reveal, .hl-home-intro');
 if ('IntersectionObserver' in window && homeRevealItems.length) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
